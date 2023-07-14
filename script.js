@@ -54,6 +54,11 @@ function generateMenu() {
   menuContainer.appendChild(menu);
 }
 
+// creare il main content con le card
+// creare la visualizzazione offerta
+// creare pop up con specifiche (attenzione +di un'immagine)
+// creare il carrello
+// creare bottone flottante "torna su"
 
 
 
