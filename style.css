@@ -1,0 +1,17 @@
+.title {
+    text-align: center;
+    color: red;
+}
+.menu {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color : black;
+  }
+  
+  .menu li {
+    display: inline-block;
+    font-size: 20px;
+    padding: 20px;
+  }

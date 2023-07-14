@@ -1,0 +1,205 @@
+
+{"portatili": [
+        {
+        "title": "Apple MacBook Air 13 M1 8-core CPU 7-core GPU 256GB Grigio Siderale",
+        "img": "https://static1.unieuro.it/medias/sys_master/root/h33/h1d/33620895236126/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-c8284c71049d11cdbb3634a7ecacfcc7-preview-sgmConversionBaseFormat-sgmProductFormat.jpg",
+        "price": "999.00",
+        "sale": true,
+        "promo": 100,
+        "id": "100",
+        "spec": {
+            "cpu": "M1 8-core",
+            "memory": "256GB",
+            "color": "Grigio Siderale"
+        }
+    },
+        {
+        "title": "Lenovo IdeaPad 3 Notebook 15 Intel i5 16GB 512GB",
+        "img": "https://static1.unieuro.it/medias/sys_master/root/h7a/he0/34363072544798/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-295da6b87ff184896b6e3abeeeda48da-preview-sgmConversionBaseFormat-sgmProductFormat.jpg",
+        "price": "550.00",
+        "sale": false,
+        "id": "101",
+        "spec": {
+            "cpu": "Intel i5",
+            "memory": "512GB",
+            "color": "Grigio Siderale"
+        }
+    },
+    {
+        "title": "Dell XPS 15 9500 15.6'' UHD+ Intel i7 16GB 1TB",
+        "img": "https://static1.unieuro.it/medias/sys_master/root/hf8/h6f/34363072740382/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-3af7a7f18d78ff16c159a7f4ff4e9db2-preview-sgmConversionBaseFormat-sgmProductFormat.jpg",
+        "price": "1799.00",
+        "sale": true,
+        "promo": 200,
+        "id": "102",
+        "spec": {
+            "cpu": "Intel i7",
+            "memory": "1TB",
+            "color": "Nero"
+        }
+    },
+    {
+        "title": "HP Pavilion 15-dk1019nl Gaming Notebook 15.6'' Intel i5 512GB",
+        "img": "https://static1.unieuro.it/medias/sys_master/root/h4f/h9e/34363072608606/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-6d6d5b7e2f1e2a8f0a7f0d8ad4e8b4f4-preview-sgmConversionBaseFormat-sgmProductFormat.jpg",
+        "price": "899.00",
+        "sale": false,
+        "id": "103",
+        "spec": {
+            "cpu": "Intel i5",
+            "memory": "512GB",
+            "color": "Nero"
+        }
+    },
+    {
+        "title": "Vitcus Intel i5 512GB",
+        "img": "https://static1.unieuro.it/medias/sys_master/root/h4f/h9e/34363072608606/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-6d6d5b7e2f1e2a8f0a7f0d8ad4e8b4f4-preview-sgmConversionBaseFormat-sgmProductFormat.jpg",
+        "price": "899.00",
+        "sale": false,
+        "id": "104",
+        "spec": {
+            "cpu": "Intel i5",
+            "memory": "512GB",
+            "color": "Nero"
+        }
+    },
+    {
+        "title": "HP Pavilion 15-dk1019nl Gaming Notebook 15.6'' Intel i5 512GB",
+        "img": "https://static1.unieuro.it/medias/sys_master/root/h4f/h9e/34363072608606/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-6d6d5b7e2f1e2a8f0a7f0d8ad4e8b4f4-preview-sgmConversionBaseFormat-sgmProductFormat.jpg",
+        "price": "899.00",
+        "sale": false,
+        "id": "105",
+        "spec": {
+            "cpu": "Intel i5",
+            "memory": "512GB",
+            "color": "Nero"
+        }
+    }
+],
+        "smartphone": [
+            {
+            "title": "iPhone 13 Pro",
+            "img": "https://example.com/iphone13pro.jpg",
+            "price": "1099.00",
+            "sale": false,
+            "id": "200",
+            "spec": {
+                "cpu": "A15 Bionic",
+                "memory": "256GB",
+                "color": "Graphite"
+            }
+            },
+            {
+            "title": "Samsung Galaxy S21 Ultra",
+            "img": "https://example.com/galaxys21ultra.jpg",
+            "price": "1299.00",
+            "sale": true,
+            "promo": 200,
+            "id": "201",
+            "spec": {
+                "cpu": "Exynos 2100",
+                "memory": "512GB",
+                "color": "Phantom Black"
+            }
+            },
+            {
+            "title": "Google Pixel 6 Pro",
+            "img": "https://example.com/pixel6pro.jpg",
+            "price": "899.00",
+            "sale": false,
+            "id": "202",
+            "spec": {
+                "cpu": "Google Tensor",
+                "memory": "128GB",
+                "color": "Stormy Black"
+            }
+            },
+            {
+            "title": "OnePlus 9 Pro",
+            "img": "https://example.com/oneplus9pro.jpg",
+            "price": "999.00",
+            "sale": true,
+            "promo": 100,
+            "id": "203",
+            "spec": {
+                "cpu": "Qualcomm Snapdragon 888",
+                "memory": "256GB",
+                "color": "Morning Mist"
+            }
+            },
+            {
+            "title": "Xiaomi Mi 11",
+            "img": "https://example.com/mi11.jpg",
+            "price": "799.00",
+            "sale": false,
+            "id": "204",
+            "spec": {
+                "cpu": "Qualcomm Snapdragon 888",
+                "memory": "128GB",
+                "color": "Midnight Gray"
+            }
+            },
+            {
+            "title": "Apple iPhone 13 mini",
+            "img": "https://example.com/iphone13mini.jpg",
+            "price": "699.00",
+            "sale": false,
+            "id": "205",
+            "spec": {
+                "cpu": "A15 Bionic",
+                "memory": "128GB",
+                "color": "Starlight"
+            }
+            },
+            {
+            "title": "Sony Xperia 1 III",
+            "img": "https://example.com/xperia1iii.jpg",
+            "price": "1199.00",
+            "sale": true,
+            "promo": 150,
+            "id": "206",
+            "spec": {
+                "cpu": "Qualcomm Snapdragon 888",
+                "memory": "256GB",
+                "color": "Frosted Black"
+            }
+            },
+            {
+            "title": "LG Velvet",
+            "img": "https://example.com/lgvelvet.jpg",
+            "price": "599.00",
+            "sale": false,
+            "id": "207",
+            "spec": {
+                "cpu": "Qualcomm Snapdragon 845",
+                "memory": "128GB",
+                "color": "Aurora Silver"
+            }
+            },
+            {
+            "title": "Motorola Edge Plus",
+            "img": "https://example.com/motoedgeplus.jpg",
+            "price": "899.00",
+            "sale": false,
+            "id": "208",
+            "spec": {
+                "cpu": "Qualcomm Snapdragon 865",
+                "memory": "256GB",
+                "color": "Thunder Grey"
+            }
+            },
+            {
+            "title": "Nokia 8.3",
+            "img": "https://example.com/nokia8.3.jpg",
+            "price": "499.00",
+            "sale": true,
+            "promo": 50,
+            "id": "209",
+            "spec": {
+                "cpu": "Qualcomm Snapdragon 765G",
+                "memory": "128GB",
+                "color": "Polar Night"
+            }
+            }
+        ]
+        }
+        
