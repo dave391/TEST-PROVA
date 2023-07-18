@@ -1,3 +1,4 @@
+<!-- 
 ////////GESTIONE CARICAMENTO INIZIALE////////
 
 // Funzione per caricare la pagina
@@ -488,3 +489,558 @@ function createScrollToTopContainer() {
 
   return container;
 }
+
+
+
+
+
+
+
+
+
+///////////CSS//////////
+
+/* Font */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Colori */
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.title {
+  text-align: center;
+  color: #000000;
+  font-size: 24px;
+  margin-bottom: 100px;
+  margin-top :25px;
+}
+
+.logo {
+  width: 40px; /* Imposta la larghezza desiderata per il logo */
+  height: auto; 
+}
+
+
+.menu {
+  list-style-type: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-top :25px;
+}
+
+.menu li {
+  display: inline-block;
+  font-size: 20px;
+  padding: 10px;
+  border: 1px solid transparent;
+}
+
+.menu li:hover {
+  background-color: #f1f1f1;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.product-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top :25px;
+}
+
+.card {
+  width: calc(20% - 20px);
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid rgba(109, 109, 109, 0.5);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 18px;
+  color: #888888;
+}
+
+.card .add-to-cart-button {
+  background-color: #888888;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.card .add-to-cart-button:hover {
+  background-color: #333333;
+}
+
+.old-price {
+  text-decoration: line-through;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  z-index: 9999;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 90%;
+  width: 600px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.modal-content .add-to-cart-button {
+  background-color: #888888;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.modal-content .add-to-cart-button:hover {
+  background-color: #333333;
+}
+
+.modal img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+}
+
+.modal h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.modal p {
+  font-size: 14px;
+  color: #888888;
+}
+
+.modal .old-price {
+  text-decoration: line-through;
+}
+
+.modal .discounted-price {
+  font-weight: bold;
+}
+
+.modal-close {
+  background-color: transparent;
+  border: none;
+  color: #888888;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  margin: 0 10px;
+}
+
+.show-cart-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: #888888;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.show-cart-button:hover {
+  background-color: #333333;
+}
+
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: #f1f1f1;
+  padding: 20px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+.cart-sidebar h2 {
+  margin-top: 0;
+}
+
+.product-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-list li {
+  margin-bottom: 10px;
+}
+
+.cart-sidebar p {
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.hide-cart-button {
+  display: block;
+  margin-top: 10px;
+  background-color: #888888;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.hide-cart-button:hover {
+  background-color: #333333;
+}
+
+.scroll-top-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.scroll-top-button {
+  display: block;
+  width: 120px;
+  height: 40px;
+  background-color: #888888;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.scroll-top-button:hover {
+  background-color: #333333;
+}
+
+/* Nuove modifiche suggerite */
+
+.card {
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.promo-label {
+  background-color: #ffc880;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.add-to-cart-button,
+.modal-content .add-to-cart-button,
+.show-cart-button,
+.hide-cart-button,
+.scroll-top-button {
+  background-color: #888888;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.add-to-cart-button:hover,
+.modal-content .add-to-cart-button:hover,
+.show-cart-button:hover,
+.hide-cart-button:hover,
+.scroll-top-button:hover {
+  background-color: #333333;
+}
+
+.card:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+///////JSON//////
+{"portatili": [
+        {
+        "title": "Apple MacBook Air 13 M1 8-core CPU 7-core GPU 256GB Grigio Siderale",
+        "img": "https://static1.unieuro.it/medias/sys_master/root/h33/h1d/33620895236126/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-c8284c71049d11cdbb3634a7ecacfcc7-preview-sgmConversionBaseFormat-sgmProductFormat.jpg",
+        "price": "999.00",
+        "sale": true,
+        "promo": 100,
+        "id": "100",
+        "spec": {
+            "cpu": "M1 8-core",
+            "memory": "256GB",
+            "color": "Grigio Siderale"
+        }
+    },
+        {
+        "title": "Lenovo IdeaPad 3 Notebook 15 Intel i5 16GB 512GB",
+        "img": "https://static1.unieuro.it/medias/sys_master/root/h7a/he0/34363072544798/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-295da6b87ff184896b6e3abeeeda48da-preview-sgmConversionBaseFormat-sgmProductFormat.jpg",
+        "price": "550.00",
+        "sale": false,
+        "id": "101",
+        "spec": {
+            "cpu": "Intel i5",
+            "memory": "512GB",
+            "color": "Grigio Siderale"
+        }
+    },
+    {
+        "title": "Dell XPS 15 9500 15.6'' UHD+ Intel i7 16GB 1TB",
+        "img": "https://static1.unieuro.it/medias/sys_master/root/hf8/h6f/34363072740382/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-3af7a7f18d78ff16c159a7f4ff4e9db2-preview-sgmConversionBaseFormat-sgmProductFormat.jpg",
+        "price": "1799.00",
+        "sale": true,
+        "promo": 200,
+        "id": "102",
+        "spec": {
+            "cpu": "Intel i7",
+            "memory": "1TB",
+            "color": "Nero"
+        }
+    },
+    {
+        "title": "HP Pavilion 15-dk1019nl Gaming Notebook 15.6'' Intel i5 512GB",
+        "img": "https://static1.unieuro.it/medias/sys_master/root/h4f/h9e/34363072608606/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-6d6d5b7e2f1e2a8f0a7f0d8ad4e8b4f4-preview-sgmConversionBaseFormat-sgmProductFormat.jpg",
+        "price": "899.00",
+        "sale": false,
+        "id": "103",
+        "spec": {
+            "cpu": "Intel i5",
+            "memory": "512GB",
+            "color": "Nero"
+        }
+    },
+    {
+        "title": "Vitcus Intel i5 512GB",
+        "img": "https://static1.unieuro.it/medias/sys_master/root/h4f/h9e/34363072608606/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-6d6d5b7e2f1e2a8f0a7f0d8ad4e8b4f4-preview-sgmConversionBaseFormat-sgmProductFormat.jpg",
+        "price": "899.00",
+        "sale": false,
+        "id": "104",
+        "spec": {
+            "cpu": "Intel i5",
+            "memory": "512GB",
+            "color": "Nero"
+        }
+    },
+    {
+        "title": "HP Pavilion 15-dk1019nl Gaming Notebook 15.6'' Intel i5 512GB",
+        "img": "https://static1.unieuro.it/medias/sys_master/root/h4f/h9e/34363072608606/-api-rest-00ed29448a7522f610cac04d7b9ea7e0-assets-6d6d5b7e2f1e2a8f0a7f0d8ad4e8b4f4-preview-sgmConversionBaseFormat-sgmProductFormat.jpg",
+        "price": "899.00",
+        "sale": false,
+        "id": "105",
+        "spec": {
+            "cpu": "Intel i5",
+            "memory": "512GB",
+            "color": "Nero"
+        }
+    }
+],
+        "smartphone": [
+            {
+            "title": "iPhone 13 Pro",
+            "img": "https://example.com/iphone13pro.jpg",
+            "price": "1099.00",
+            "sale": false,
+            "id": "200",
+            "spec": {
+                "cpu": "A15 Bionic",
+                "memory": "256GB",
+                "color": "Graphite"
+            }
+            },
+            {
+            "title": "Samsung Galaxy S21 Ultra",
+            "img": "https://example.com/galaxys21ultra.jpg",
+            "price": "1299.00",
+            "sale": true,
+            "promo": 200,
+            "id": "201",
+            "spec": {
+                "cpu": "Exynos 2100",
+                "memory": "512GB",
+                "color": "Phantom Black"
+            }
+            },
+            {
+            "title": "Google Pixel 6 Pro",
+            "img": "https://example.com/pixel6pro.jpg",
+            "price": "899.00",
+            "sale": false,
+            "id": "202",
+            "spec": {
+                "cpu": "Google Tensor",
+                "memory": "128GB",
+                "color": "Stormy Black"
+            }
+            },
+            {
+            "title": "OnePlus 9 Pro",
+            "img": "https://example.com/oneplus9pro.jpg",
+            "price": "999.00",
+            "sale": true,
+            "promo": 100,
+            "id": "203",
+            "spec": {
+                "cpu": "Qualcomm Snapdragon 888",
+                "memory": "256GB",
+                "color": "Morning Mist"
+            }
+            },
+            {
+            "title": "Xiaomi Mi 11",
+            "img": "https://example.com/mi11.jpg",
+            "price": "799.00",
+            "sale": false,
+            "id": "204",
+            "spec": {
+                "cpu": "Qualcomm Snapdragon 888",
+                "memory": "128GB",
+                "color": "Midnight Gray"
+            }
+            },
+            {
+            "title": "Apple iPhone 13 mini",
+            "img": "https://example.com/iphone13mini.jpg",
+            "price": "699.00",
+            "sale": false,
+            "id": "205",
+            "spec": {
+                "cpu": "A15 Bionic",
+                "memory": "128GB",
+                "color": "Starlight"
+            }
+            },
+            {
+            "title": "Sony Xperia 1 III",
+            "img": "https://example.com/xperia1iii.jpg",
+            "price": "1199.00",
+            "sale": true,
+            "promo": 150,
+            "id": "206",
+            "spec": {
+                "cpu": "Qualcomm Snapdragon 888",
+                "memory": "256GB",
+                "color": "Frosted Black"
+            }
+            },
+            {
+            "title": "LG Velvet",
+            "img": "https://example.com/lgvelvet.jpg",
+            "price": "599.00",
+            "sale": false,
+            "id": "207",
+            "spec": {
+                "cpu": "Qualcomm Snapdragon 845",
+                "memory": "128GB",
+                "color": "Aurora Silver"
+            }
+            },
+            {
+            "title": "Motorola Edge Plus",
+            "img": "https://example.com/motoedgeplus.jpg",
+            "price": "899.00",
+            "sale": false,
+            "id": "208",
+            "spec": {
+                "cpu": "Qualcomm Snapdragon 865",
+                "memory": "256GB",
+                "color": "Thunder Grey"
+            }
+            },
+            {
+            "title": "Nokia 8.3",
+            "img": "https://example.com/nokia8.3.jpg",
+            "price": "499.00",
+            "sale": true,
+            "promo": 50,
+            "id": "209",
+            "spec": {
+                "cpu": "Qualcomm Snapdragon 765G",
+                "memory": "128GB",
+                "color": "Polar Night"
+            }
+            }
+        ]
+        }
+        
+
+    ///////// README //////
+
+    I dati sono in formato Json. 
+Per richiamare i dati viene utilizzata la funzione fetch di JS. 
+In caso di errori di CORS, utilizzare un proxy o utilizzare l'estensione per visual studio code "Live Server"   https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
+
+
+
+
+
+
+
+
+
+
+
+
+   -->
