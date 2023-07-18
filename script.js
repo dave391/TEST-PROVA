@@ -1,32 +1,34 @@
+
 // Funzione per caricare la pagina
 function loadPage() {
-  // Creazione di un nuovo elemento div con id "title" e classe "title"
+  // Creo un nuovo elemento div con id "title" e classe "title"
   let div_1 = document.createElement('div');
   div_1.setAttribute('id', 'title');
   div_1.setAttribute('class', 'title');
   div_1.innerHTML = 'TITLE';
 
-  // Ottenimento dell'elemento con id "main"
+  // Ottengo l'elemento con id "main"
   const main = document.getElementById('main');
-  // Aggiunta del nuovo elemento div al contenuto dell'elemento con id "main"
+  // Aggiungo il nuovo elemento div al contenuto dell'elemento con id "main"
   main.appendChild(div_1);
 
-  // Chiamata alla funzione takeData() e successivamente alla funzione generateMenu()
+  // Chiamo la funzione takeData() e successivamente la funzione generateMenu()
   takeData().then(() => {
     generateMenu();
+    createScrollToTopContainer();
   });
 }
 
-let dati; // Dichiarazione della variabile dati come variabile globale
+let dati; // Dichiaro la variabile dati come variabile globale
 function takeData() {
-  // Effettua una richiesta per ottenere il file JSON "products.json"
+  // Effettuo una richiesta per ottenere il file JSON "products.json"
   return fetch('products.json')
-    .then(response => response.json()) // Converte la risposta in formato JSON
+    .then(response => response.json()) // Converto la risposta in formato JSON
     .then(data => {
-      dati = data; // Assegna i dati ottenuti all'oggetto dati globale
+      dati = data; // Assegno i dati ottenuti all'oggetto dati globale
     })
     .catch(error => {
-      console.error(error); // Stampa eventuali errori nella console
+      console.error(error); // Stampo eventuali errori nella console
     });
 }
 
@@ -67,17 +69,17 @@ function createProductCards(category) {
   for (var i = 0; i < products.length; i++) {
     var product = products[i];
 
-    // Creare un elemento div per la card del prodotto
+    // Creo un elemento div per la card del prodotto
     var card = document.createElement('div');
     card.classList.add('card');
 
-    // Aggiungere l'immagine del prodotto alla card
+    // Aggiungo l'immagine del prodotto alla card
     var img = document.createElement('img');
     img.src = product.img;
     img.alt = product.title;
     card.appendChild(img);
 
-    // Aggiungere il titolo del prodotto alla card
+    // Aggiungo il titolo del prodotto alla card
     var title = document.createElement('h2');
     title.textContent = product.title;
     card.appendChild(title);
@@ -108,17 +110,17 @@ function createProductCards(category) {
 
     card.appendChild(price);
 
-    // Aggiungi l'attributo "data-id" al div card con il valore dell'id del prodotto
+    // Aggiungo l'attributo "data-id" al div card con il valore dell'id del prodotto
     card.setAttribute('data-id', product.id);
 
-    // Aggiungi il gestore di eventi click per aprire il modal
+    // Aggiungo il gestore di eventi click per aprire il modal
     card.addEventListener('click', function(event) {
       var productId = event.currentTarget.getAttribute('data-id');
       var selectedProduct = getProductById(productId);
       openModal(selectedProduct);
     });
 
-    // Aggiungi il bottone "Carrello" alla card
+    // Aggiungo il bottone "Carrello" alla card
     var addToCartButton = document.createElement('button');
     addToCartButton.textContent = 'Carrello';
     addToCartButton.classList.add('add-to-cart-button');
@@ -130,7 +132,7 @@ function createProductCards(category) {
     });
     card.appendChild(addToCartButton);
 
-    // Aggiungi la card del prodotto alla lista dei prodotti
+    // Aggiungo la card del prodotto alla lista dei prodotti
     productCard.appendChild(card);
   }
 }
@@ -156,31 +158,31 @@ function addToCart(product) {
 }
 
 function openModal(product) {
-  // Crea il div del modal
+  // Creo il div del modal
   const modal = document.createElement('div');
   modal.classList.add('modal');
 
-  // Crea il contenuto del modal
+  // Creo il contenuto del modal
   const content = document.createElement('div');
   content.classList.add('modal-content');
 
-  // Aggiungi l'immagine del prodotto al modal
+  // Aggiungo l'immagine del prodotto al modal
   const img = document.createElement('img');
   img.src = product.img;
   img.alt = product.title;
   content.appendChild(img);
 
-  // Aggiungi il titolo del prodotto al modal
+  // Aggiungo il titolo del prodotto al modal
   const title = document.createElement('h2');
   title.textContent = product.title;
   content.appendChild(title);
 
-  // Aggiungi il prezzo del prodotto al modal
+  // Aggiungo il prezzo del prodotto al modal
   const price = document.createElement('p');
   price.textContent = 'Prezzo: ' + product.price + '€';
   content.appendChild(price);
 
-  // Aggiungi i dettagli del prodotto al modal
+  // Aggiungo i dettagli del prodotto al modal
   const details = document.createElement('ul');
   for (const key in product.spec) {
     const detailItem = document.createElement('li');
@@ -189,7 +191,7 @@ function openModal(product) {
   }
   content.appendChild(details);
 
-  // Aggiungi il bottone "Carrello" al modal
+  // Aggiungo il bottone "Carrello" al modal
   const addToCartButton = document.createElement('button');
   addToCartButton.textContent = 'Carrello';
   addToCartButton.classList.add('add-to-cart-button');
@@ -198,7 +200,7 @@ function openModal(product) {
   });
   content.appendChild(addToCartButton);
 
-  // Aggiungi il pulsante di chiusura al modal
+  // Aggiungo il pulsante di chiusura al modal
   const closeButton = document.createElement('button');
   closeButton.classList.add('modal-close');
   closeButton.textContent = 'Chiudi';
@@ -207,21 +209,21 @@ function openModal(product) {
   });
   content.appendChild(closeButton);
 
-  // Aggiungi il contenuto al modal
+  // Aggiungo il contenuto al modal
   modal.appendChild(content);
 
-  // Aggiungi il modal al documento
+  // Aggiungo il modal al documento
   document.body.appendChild(modal);
 
-  // Disabilita lo scroll del body quando il modal è aperto
+  // Disabilito lo scroll del body quando il modal è aperto
   document.body.style.overflow = 'hidden';
 }
 
 function closeModal(modal) {
-  // Rimuovi il modal dal documento
+  // Rimuovo il modal dal documento
   document.body.removeChild(modal);
 
-  // Abilita lo scroll del body quando il modal è chiuso
+  // Abilito lo scroll del body quando il modal è chiuso
   document.body.style.overflow = 'auto';
 }
 
@@ -231,23 +233,29 @@ function updateCartCount() {
 }
 
 function openCartSidebar() {
-  // Creazione della sidebar del carrello
+  // Creo la sidebar del carrello
   var sidebar = document.createElement('div');
   sidebar.classList.add('cart-sidebar');
 
-  // Creazione del titolo della sidebar
+  // Creo il titolo della sidebar
   var title = document.createElement('h2');
   title.textContent = 'Carrello Acquisti';
   sidebar.appendChild(title);
 
-  // Creazione dell'elenco dei prodotti nel carrello
+  // Creo l'elenco dei prodotti nel carrello
   var productList = document.createElement('ul');
   productList.classList.add('product-list');
 
-  // Aggiungi i prodotti al carrello
+  // Aggiungo i prodotti al carrello
   carrelloAcquisti.forEach(function(product) {
     var listItem = document.createElement('li');
-    listItem.textContent = product.title + ' - Prezzo: ' + product.price + '€';
+    var productPrice = parseFloat(product.price);
+
+    if (product.sale && product.promo) {
+      productPrice -= parseFloat(product.promo);
+    }
+
+    listItem.textContent = product.title + ' - Prezzo: ' + productPrice.toFixed(2) + '€';
 
     var removeButton = document.createElement('button');
     removeButton.textContent = 'Rimuovi prodotto';
@@ -265,6 +273,7 @@ function openCartSidebar() {
         });
         listItem.remove();
         updateCartCount();
+        updateTotalPrice();
       }
     });
 
@@ -272,16 +281,16 @@ function openCartSidebar() {
     productList.appendChild(listItem);
   });
 
-  // Aggiungi il totale dei prezzi
+  // Aggiungo il totale dei prezzi
   var totalText = document.createElement('p');
   totalText.textContent = 'Totale: ' + calculateTotalPrice().toFixed(2) + '€';
   totalText.setAttribute('id', 'total-price');
   sidebar.appendChild(totalText);
 
-  // Aggiungi la productList alla sidebar
+  // Aggiungo la productList alla sidebar
   sidebar.appendChild(productList);
 
-  // Aggiungi il pulsante "Nascondi carrello" alla sidebar
+  // Aggiungo il pulsante "Nascondi carrello" alla sidebar
   var hideCartButton = document.createElement('button');
   hideCartButton.textContent = 'Nascondi carrello';
   hideCartButton.classList.add('hide-cart-button');
@@ -290,19 +299,14 @@ function openCartSidebar() {
   });
   sidebar.appendChild(hideCartButton);
 
-  // Aggiungi la sidebar al documento
+  // Aggiungo la sidebar al documento
   document.body.appendChild(sidebar);
 }
-
-
-
 
 function closeCartSidebar() {
   const sidebar = document.querySelector('.cart-sidebar');
   document.body.removeChild(sidebar);
 }
-
-
 
 function calculateTotalPrice() {
   var totalPrice = 0;
@@ -316,7 +320,7 @@ function calculateTotalPrice() {
   return totalPrice;
 }
 
-// Aggiungi il bottone "Mostra carrello" in alto a destra
+// Aggiungo il bottone "Mostra carrello" in alto a destra
 var showCartButton = document.createElement('button');
 showCartButton.textContent = 'Mostra carrello';
 showCartButton.classList.add('show-cart-button');
@@ -325,8 +329,28 @@ showCartButton.addEventListener('click', function() {
 });
 document.body.appendChild(showCartButton);
 
+// Creo il div che contiene il bottone "scroll-to-top" dinamicamente
+function createScrollToTopContainer() {
+  var container = document.createElement('div');
+  container.id = 'scroll-to-top-container';
+  container.classList.add('scroll-to-top-container');
 
+  // Creo il bottone "scroll-to-top" dinamicamente
+  var button = document.createElement('button');
+  button.id = 'scroll-to-top-button';
+  button.className = 'scroll-to-top-button';
+  button.textContent = 'Torna su';
 
+  // Scrolla verso l'alto quando viene cliccato il bottone
+  button.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
-// creare il carrello
-// creare bottone flottante "torna su"
+  // Aggiungo il bottone al contenitore
+  container.appendChild(button);
+
+  // Aggiungo il div "scroll-to-top-container" al body
+  document.body.appendChild(container);
+
+  return container;
+}
