@@ -1,16 +1,18 @@
+////////GESTIONE CARICAMENTO INIZIALE////////
 
 // Funzione per caricare la pagina
 function loadPage() {
-  // Creo un nuovo elemento div con id "title" e classe "title"
-  let div_1 = document.createElement('div');
-  div_1.setAttribute('id', 'title');
-  div_1.setAttribute('class', 'title');
-  div_1.innerHTML = 'TITLE';
+
+  // Creo il div che conterrà il titolo
+  const title = document.createElement('div');
+  title.setAttribute('id', 'title');
+  title.setAttribute('class', 'title');
+  title.innerHTML = 'TITLE';
 
   // Ottengo l'elemento con id "main"
   const main = document.getElementById('main');
   // Aggiungo il nuovo elemento div al contenuto dell'elemento con id "main"
-  main.appendChild(div_1);
+  main.appendChild(title);
 
   // Chiamo la funzione takeData() e successivamente la funzione generateMenu()
   takeData().then(() => {
@@ -18,6 +20,8 @@ function loadPage() {
     createScrollToTopContainer();
   });
 }
+
+////////GESTIONE RICHIESTA DA JSON////////
 
 let dati; // Dichiaro la variabile dati come variabile globale
 function takeData() {
@@ -32,30 +36,46 @@ function takeData() {
     });
 }
 
+////////GESTIONE MENU'////////
+
+// Genero il menu dinamico basato sui dati ottenuti
 function generateMenu() {
+  // Ottengo le chiavi dell'oggetto dati
   const keys = Object.keys(dati);
+  // Creo un elemento <ul> per il menu
   const menu = document.createElement('ul');
+  // Imposto gli attributi id e class per il menu
   menu.setAttribute('id', 'menu');
   menu.setAttribute('class', 'menu');
 
-  keys.forEach(key => {
+  // Itero ogni chiave
+  for (let i = 0; i < keys.length; i++) {
+    // Creo un elemento <li> per ogni voce del menu
     const menuItem = document.createElement('li');
-    menuItem.textContent = key;
+    // Imposto il testo della voce del menu come la chiave corrente
+    menuItem.textContent = keys[i];
+    // Aggiungo un gestore di eventi click per la voce del menu
     menuItem.addEventListener('click', function() {
-      createProductCards(key);
+      // Creo le card dei prodotti usando la chiave corrente come parametro
+      createProductCards(keys[i]);
     });
+    // Aggiungo la voce del menu al menu
     menu.appendChild(menuItem);
-  });
+  }
 
+  // Ottengo il contenitore del menu con id "title"
   const menuContainer = document.getElementById('title');
+  // Aggiungo il menu al contenitore
   menuContainer.appendChild(menu);
 }
 
+////////GESTIONE CARD////////
+
 function createProductCards(category) {
-  // Rimuovo il div precedente per visualizzare le card in modo univoco
-  let blank = document.getElementById('product-card');
-  if (blank) {
-    blank.remove();
+  // Rimuovo il div precedente per fare in modo che le card si generino sempre nello stesso div
+  let removeDiv = document.getElementById('product-card');
+  if (removeDiv) {
+    removeDiv.remove();
   }
 
   // Creo il div che conterrà le card
@@ -71,7 +91,8 @@ function createProductCards(category) {
 
     // Creo un elemento div per la card del prodotto
     var card = document.createElement('div');
-    card.classList.add('card');
+    card.setAttribute('id', 'card');
+    card.setAttribute('class', 'card');
 
     // Aggiungo l'immagine del prodotto alla card
     var img = document.createElement('img');
@@ -84,71 +105,117 @@ function createProductCards(category) {
     title.textContent = product.title;
     card.appendChild(title);
 
-    var price = document.createElement('p');
+    // Aggiungo il prezzo del prodotto alla card
 
-    if (product.sale) {
-      var oldPrice = document.createElement('span');
-      oldPrice.textContent = product.price + '€';
-      oldPrice.classList.add('old-price');
-      price.appendChild(oldPrice);
+  // Creo un nuovo elemento <p> per visualizzare il prezzo
+  var price = document.createElement('p');
 
-      var newPrice = parseFloat(product.price) - parseFloat(product.promo);
-      var discountedPrice = document.createElement('span');
-      discountedPrice.textContent = newPrice.toFixed(2) + '€';
-      discountedPrice.classList.add('discounted-price');
-      price.appendChild(discountedPrice);
+  // Verifico se il prodotto è in promozione
+  if (product.sale) {
+    // Se il prodotto è in promozione, creo un elemento <span> per il vecchio prezzo
+    var oldPrice = document.createElement('span');
+    // Imposto il testo del vecchio prezzo come il prezzo del prodotto seguito dal simbolo dell'euro
+    oldPrice.textContent = product.price + '€';
+    // Setto la classe e id 'old-price' al vecchio prezzo
+    oldPrice.setAttribute('id', 'old-price');
+    oldPrice.setAttribute('class', 'old-price')
+    // Aggiungo il vecchio prezzo all'elemento <p>
+    price.appendChild(oldPrice);
 
-      if (product.promo) {
-        var promoLabel = document.createElement('span');
-        promoLabel.textContent = 'PROMO';
-        promoLabel.classList.add('promo-label');
-        card.appendChild(promoLabel);
-      }
-    } else {
-      price.textContent = 'Prezzo: ' + product.price + '€';
-    }
+    // Calcolo il nuovo prezzo scontato sottraendo il valore promozionale dal prezzo del prodotto
+    var newPrice = parseFloat(product.price) - parseFloat(product.promo);
+    // Creo un nuovo elemento <span> per il prezzo scontato
+    var discountedPrice = document.createElement('span');
+    // Imposto il testo del prezzo scontato con due cifre decimali e il simbolo dell'euro
+    discountedPrice.textContent = newPrice.toFixed(2) + '€';
+    // setto la classe e id 'discounted-price' al prezzo scontato
+    discountedPrice.setAttribute('id', 'discounted-price');
+    discountedPrice.setAttribute('class', 'discounted-price');
+    // Aggiungo il prezzo scontato all'elemento <p>
+    price.appendChild(discountedPrice);
 
-    card.appendChild(price);
+  
+    // Creo un nuovo elemento <span> per l'etichetta "promo"
+    var promoLabel = document.createElement('span');
+    // Imposto il testo dell'etichetta promozionale come 'PROMO'
+    promoLabel.textContent = 'PROMO';
+    // Aggiungo la classe 'promo-label' all'etichetta promozionale
+    promoLabel.setAttribute('id', 'promo-label');
+    promoLabel.setAttribute('class', 'promo-label');
+    // Aggiungo l'etichetta promozionale alla card
+    card.appendChild(promoLabel);
+   
+  } else {
+    // Se il prodotto non è in promozione, imposto il prezzo standard
+    price.textContent = 'Prezzo: ' + product.price + '€';
+  }
 
-    // Aggiungo l'attributo "data-id" al div card con il valore dell'id del prodotto
-    card.setAttribute('data-id', product.id);
+  // Aggiungo l'elemento <p> contenente il prezzo alla card
+  card.appendChild(price);
 
-    // Aggiungo il gestore di eventi click per aprire il modal
-    card.addEventListener('click', function(event) {
-      var productId = event.currentTarget.getAttribute('data-id');
-      var selectedProduct = getProductById(productId);
-      openModal(selectedProduct);
-    });
+  // Aggiungo l'attributo "data-id" al div card con il valore dell'id del prodotto (servirà dopo per la gestione dei click)
+  card.setAttribute('data-id', product.id);
 
-    // Aggiungo il bottone "Carrello" alla card
-    var addToCartButton = document.createElement('button');
-    addToCartButton.textContent = 'Carrello';
-    addToCartButton.classList.add('add-to-cart-button');
-    addToCartButton.addEventListener('click', function(event) {
-      event.stopPropagation();
-      var productId = event.currentTarget.parentElement.getAttribute('data-id');
-      var selectedProduct = getProductById(productId);
-      addToCart(selectedProduct);
-    });
-    card.appendChild(addToCartButton);
+   // Aggiungo un listener di eventi al click sull'elemento card
+  card.addEventListener('click', function(event) {
+  // Ottengo l'ID del prodotto dall'attributo 'data-id' dell'elemento corrente
+  var productId = event.currentTarget.getAttribute('data-id');
+  // Ottengo il prodotto selezionato utilizzando l'ID ottenuto
+  var selectedProduct = getProductById(productId);
+  // Apro il modal con il prodotto selezionato
+  openModal(selectedProduct);
+  });
 
-    // Aggiungo la card del prodotto alla lista dei prodotti
-    productCard.appendChild(card);
+
+  // Aggiungo il bottone "Carrello" alla card
+  var addToCartButton = document.createElement('button');
+  addToCartButton.textContent = 'Carrello';
+  addToCartButton.setAttribute('id', 'add-to-cart-button');
+  addToCartButton.setAttribute('class', 'add-to-cart-button');
+  // Aggiungo un listener di eventi al click sul pulsante "Carrello"
+  addToCartButton.addEventListener('click', (event) => {
+  // Interrompo la propagazione dell'evento per fare in modo che al click sul bottone non si apra anche il modal
+  event.stopPropagation();
+  // Ottengo il genitore dell'elemento corrente
+  const parentElement = event.currentTarget.parentElement;
+  // Ottengo l'ID del prodotto dal genitore utilizzando la proprietà 'dataset'
+  const productId = parentElement.dataset.id;
+  // Ottengo il prodotto selezionato utilizzando l'ID ottenuto
+  const selectedProduct = getProductById(productId);
+  // Aggiungo il prodotto al carrello utilizzando la funzione 'addToCart'
+  addToCart(selectedProduct);
+});
+  // Aggiungo il pulsante "Carrello" all'elemento card
+  card.appendChild(addToCartButton);
+
+  // Aggiungo la card del prodotto all'elemento productCard (lista dei prodotti)
+  productCard.appendChild(card);
+
   }
 }
 
+// Definisco una funzione per ottenere un prodotto tramite il suo ID
 function getProductById(productId) {
+  // Ottengo tutte le chiavi dell'oggetto dati
   var keys = Object.keys(dati);
+  // Itero attraverso le chiavi
   for (var i = 0; i < keys.length; i++) {
+    // Ottengo l'array di prodotti corrispondente alla chiave corrente
     var products = dati[keys[i]];
+    // Itero attraverso i prodotti nell'array
     for (var j = 0; j < products.length; j++) {
+      // Controllo se l'ID del prodotto corrente corrisponde all'ID cercato
       if (products[j].id === productId) {
+        // Restituisco il prodotto corrente se l'ID corrisponde
         return products[j];
       }
     }
   }
+  // Restituisco null se non viene trovato nessun prodotto con l'ID corrispondente
   return null;
 }
+
+////////GESTIONE CARRELLO////
 
 var carrelloAcquisti = []; // Lista dei prodotti nel carrello
 
@@ -157,14 +224,19 @@ function addToCart(product) {
   updateCartCount();
 }
 
+
+////////GESTIONE POP-UP (MODALE)////
+
 function openModal(product) {
   // Creo il div del modal
   const modal = document.createElement('div');
-  modal.classList.add('modal');
+  modal.setAttribute('id', 'modal');
+  modal.setAttribute('class', 'modal');
 
   // Creo il contenuto del modal
   const content = document.createElement('div');
-  content.classList.add('modal-content');
+  content.setAttribute('id', 'modal-content');
+  content.setAttribute('class', 'modal-content');
 
   // Aggiungo l'immagine del prodotto al modal
   const img = document.createElement('img');
@@ -182,30 +254,41 @@ function openModal(product) {
   price.textContent = 'Prezzo: ' + product.price + '€';
   content.appendChild(price);
 
-  // Aggiungo i dettagli del prodotto al modal
+ // Aggiungo un elemento <ul> per contenere i dettagli del prodotto
+  // Creo un elemento <ul> per contenere i dettagli del prodotto
   const details = document.createElement('ul');
+  // Itero su ogni chiave dell'oggetto "product.spec"
   for (const key in product.spec) {
-    const detailItem = document.createElement('li');
-    detailItem.textContent = key + ': ' + product.spec[key];
-    details.appendChild(detailItem);
+  // Creo un elemento <li> per ogni dettaglio
+  const detailItem = document.createElement('li');
+  // Imposto il testo dell'elemento <li> 
+  detailItem.textContent = key + ': ' + product.spec[key];
+  // Aggiungo l'elemento <li> all'elemento <ul>
+  details.appendChild(detailItem);
   }
+  // Aggiungo l'elemento <ul> contenente i dettagli al contenuto del modal
   content.appendChild(details);
+
 
   // Aggiungo il bottone "Carrello" al modal
   const addToCartButton = document.createElement('button');
   addToCartButton.textContent = 'Carrello';
-  addToCartButton.classList.add('add-to-cart-button');
+  addToCartButton.setAttribute('id', 'add-to-cart-button');
+  addToCartButton.setAttribute('class', 'add-to-cart-button');
+  // Aggiungo la funzione di "aggiungi al carrello"
   addToCartButton.addEventListener('click', function() {
-    addToCart(product);
+  addToCart(product);
   });
   content.appendChild(addToCartButton);
 
   // Aggiungo il pulsante di chiusura al modal
   const closeButton = document.createElement('button');
-  closeButton.classList.add('modal-close');
+  closeButton.setAttribute('id', 'modal-close');
+  closeButton.setAttribute('class', 'modal-close');
   closeButton.textContent = 'Chiudi';
+  // Aggiungo la funzione di chiusura del modal
   closeButton.addEventListener('click', function() {
-    closeModal(modal);
+  closeModal(modal);
   });
   content.appendChild(closeButton);
 
@@ -215,27 +298,20 @@ function openModal(product) {
   // Aggiungo il modal al documento
   document.body.appendChild(modal);
 
-  // Disabilito lo scroll del body quando il modal è aperto
-  document.body.style.overflow = 'hidden';
 }
-
+  // Funzione per chiudere il modal
 function closeModal(modal) {
   // Rimuovo il modal dal documento
   document.body.removeChild(modal);
-
-  // Abilito lo scroll del body quando il modal è chiuso
-  document.body.style.overflow = 'auto';
 }
 
-function updateCartCount() {
-  const cartButton = document.getElementById('cart-button');
-  cartButton.textContent = 'Carrello (' + carrelloAcquisti.length + ')';
-}
+
 
 function openCartSidebar() {
   // Creo la sidebar del carrello
   var sidebar = document.createElement('div');
-  sidebar.classList.add('cart-sidebar');
+  sidebar.setAttribute('id', 'cart-sidebar');
+  sidebar.setAttribute('class', 'cart-sidebar');
 
   // Creo il titolo della sidebar
   var title = document.createElement('h2');
@@ -244,46 +320,69 @@ function openCartSidebar() {
 
   // Creo l'elenco dei prodotti nel carrello
   var productList = document.createElement('ul');
-  productList.classList.add('product-list');
+  productList.setAttribute('id', 'product-list');
+  productList.setAttribute('class', 'product-list');
 
   // Aggiungo i prodotti al carrello
   carrelloAcquisti.forEach(function(product) {
+    // Creo un nuovo elemento <li> per ogni prodotto nel carrello
     var listItem = document.createElement('li');
+    // Converto il prezzo del prodotto in un numero decimale utilizzando parseFloat()
     var productPrice = parseFloat(product.price);
-
-    if (product.sale && product.promo) {
+    // Verifico se il prodotto è in promozione
+    if (product.sale) {
+      // Sottraggo il prezzo promozionale dal prezzo del prodotto
       productPrice -= parseFloat(product.promo);
     }
-
+    // Imposto il testo del nuovo elemento <li> con il titolo del prodotto e il prezzo formattato
     listItem.textContent = product.title + ' - Prezzo: ' + productPrice.toFixed(2) + '€';
-
+  
+    // Creo un nuovo pulsante per rimuovere il prodotto dal carrello
     var removeButton = document.createElement('button');
     removeButton.textContent = 'Rimuovi prodotto';
-    removeButton.classList.add('remove-product-button');
+    removeButton.setAttribute('id', 'remove-product-button');
+    removeButton.setAttribute('class', 'remove-product-button');
+    
+    // Aggiungo un listener per l'evento 'click' al pulsante di rimozione
     removeButton.addEventListener('click', function() {
+      // Recupero l'elemento <li> genitore del pulsante di rimozione
       var listItem = this.parentNode;
+      
+      // Eseguo lo split del testo per ottenere il titolo del prodotto
       var productTitle = listItem.textContent.split(' - ')[0];
+      
+      // Trovo il prodotto da rimuovere nell'array 'carrelloAcquisti' in base al titolo
       var productToRemove = carrelloAcquisti.find(function(prod) {
         return prod.title === productTitle;
       });
-
+  
+      // Verifico se il prodotto è stato trovato nell'array 'carrelloAcquisti'
       if (productToRemove) {
+        // Rimuovo il prodotto dall'array 'carrelloAcquisti' utilizzando il metodo filter()
         carrelloAcquisti = carrelloAcquisti.filter(function(prod) {
           return prod !== productToRemove;
         });
+        
+        // Rimuovo l'elemento <li> dal DOM
         listItem.remove();
-        updateCartCount();
+        
+        // Aggiorno il prezzo totale del carrello
         updateTotalPrice();
       }
     });
-
+  
+    // Aggiungo il pulsante di rimozione all'elemento <li>
     listItem.appendChild(removeButton);
+    
+    // Aggiungo l'elemento <li> al contenitore della lista dei prodotti nel carrello
     productList.appendChild(listItem);
   });
+  
 
   // Aggiungo il totale dei prezzi
   var totalText = document.createElement('p');
   totalText.textContent = 'Totale: ' + calculateTotalPrice().toFixed(2) + '€';
+  totalText.setAttribute('id', 'total-price');
   totalText.setAttribute('id', 'total-price');
   sidebar.appendChild(totalText);
 
@@ -293,7 +392,9 @@ function openCartSidebar() {
   // Aggiungo il pulsante "Nascondi carrello" alla sidebar
   var hideCartButton = document.createElement('button');
   hideCartButton.textContent = 'Nascondi carrello';
-  hideCartButton.classList.add('hide-cart-button');
+  hideCartButton.setAttribute('id', 'hide-cart-button');
+  hideCartButton.setAttribute('class', 'hide-cart-button');
+  // Aggiungo un listener sul bottone associato alla funzione di chiusura della sidebar
   hideCartButton.addEventListener('click', function() {
     closeCartSidebar();
   });
@@ -302,28 +403,42 @@ function openCartSidebar() {
   // Aggiungo la sidebar al documento
   document.body.appendChild(sidebar);
 }
-
+  // Funzione di chiusura della sidebar
 function closeCartSidebar() {
-  const sidebar = document.querySelector('.cart-sidebar');
+  const sidebar = document.getElementById('cart-sidebar');
   document.body.removeChild(sidebar);
 }
 
-function calculateTotalPrice() {
-  var totalPrice = 0;
-  carrelloAcquisti.forEach(function(product) {
-    var price = parseFloat(product.price);
-    if (product.sale && product.promo) {
-      price -= parseFloat(product.promo);
+  // Funzione per calcolare il totale
+  function calculateTotalPrice() {
+    // Inizializzo il totale a 0
+    var totalPrice = 0;
+    // Itero sugli elementi del carrello degli acquisti
+    for (var i = 0; i < carrelloAcquisti.length; i++) {
+      // Ottengo il prodotto corrente
+      var product = carrelloAcquisti[i];
+      // Estraggo il prezzo del prodotto come valore numerico
+      var price = parseFloat(product.price);
+      // Controllo se il prodotto è in promozione
+      if (product.sale ) {
+        // Sottraggo il valore della promozione dal prezzo
+        price -= parseFloat(product.promo);
+      }
+      // Aggiungo il prezzo del prodotto al totale
+      totalPrice += price;
     }
-    totalPrice += price;
-  });
-  return totalPrice;
-}
+  
+    // Restituisco il totale calcolato
+    return totalPrice;
+  }
+  
 
 // Aggiungo il bottone "Mostra carrello" in alto a destra
 var showCartButton = document.createElement('button');
 showCartButton.textContent = 'Mostra carrello';
-showCartButton.classList.add('show-cart-button');
+showCartButton.setAttribute('id', 'show-cart-button');
+showCartButton.setAttribute('class', 'show-cart-button');
+//  Aggiungo un listener associato alla funzione per aprire la sidebar
 showCartButton.addEventListener('click', function() {
   openCartSidebar();
 });
@@ -332,13 +447,13 @@ document.body.appendChild(showCartButton);
 // Creo il div che contiene il bottone "scroll-to-top" dinamicamente
 function createScrollToTopContainer() {
   var container = document.createElement('div');
-  container.id = 'scroll-to-top-container';
-  container.classList.add('scroll-to-top-container');
+  container.setAttribute('id', 'scroll-top-container');
+  container.setAttribute('class', 'scroll-top-container');
 
   // Creo il bottone "scroll-to-top" dinamicamente
   var button = document.createElement('button');
-  button.id = 'scroll-to-top-button';
-  button.className = 'scroll-to-top-button';
+  button.setAttribute('id', 'scroll-top-button');
+  button.setAttribute('class', 'scroll-top-button');
   button.textContent = 'Torna su';
 
   // Scrolla verso l'alto quando viene cliccato il bottone
@@ -349,7 +464,7 @@ function createScrollToTopContainer() {
   // Aggiungo il bottone al contenitore
   container.appendChild(button);
 
-  // Aggiungo il div "scroll-to-top-container" al body
+  // Aggiungo il div "scroll-top-container" al body
   document.body.appendChild(container);
 
   return container;

@@ -151,14 +151,14 @@
 }
 
 
-.scroll-to-top-container {
+.scroll-top-container {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 9999;
 }
 
-.scroll-to-top-button {
+.scroll-top-button {
   display: block;
   width: 120px;
   height: 40px;
@@ -170,6 +170,6 @@
   cursor: pointer;
 }
 
-.scroll-to-top-button:hover {
+.scroll-top-button:hover {
   background-color: #555;
 }
