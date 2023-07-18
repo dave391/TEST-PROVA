@@ -305,7 +305,7 @@ function closeModal(modal) {
   document.body.removeChild(modal);
 }
 
-
+///////GESTIONE SIDEBAR PER VISUAALIZZAZIONE CARRELLO/////
 
 function openCartSidebar() {
   // Creo la sidebar del carrello
@@ -443,6 +443,10 @@ showCartButton.addEventListener('click', function() {
   openCartSidebar();
 });
 document.body.appendChild(showCartButton);
+
+
+///////GESTIONE BOTTONE PER SCORRERE/////
+
 
 // Creo il div che contiene il bottone "scroll-to-top" dinamicamente
 function createScrollToTopContainer() {
